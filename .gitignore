@@ -1,3 +1,4 @@
-node_modules
-
-*.lock
+backend/node_modules
+backend/*.lock
+backend/dist
+postgres/db

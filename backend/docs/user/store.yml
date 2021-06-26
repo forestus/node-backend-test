@@ -1,0 +1,97 @@
+paths:
+  /users:
+     post:
+       tags:
+        - User
+       summary: Create a user.
+       requestBody:
+         required: true
+         content:
+           application/json:
+             schema:
+               type: object
+               properties:
+                 name:
+                   type: string
+                   description: The user's name.
+                   example: Guilherme
+                 lastname:
+                   type: string
+                   description: Sobrenome do usuário.
+                   example: Maciel
+                 nickname:
+                   type: string
+                   description: Apelido do usuário.
+                   example: forestus
+                 address:
+                   type: string
+                   description: Endereço do usuário.
+                   example: Apiaca
+                 bio:
+                   type: string
+                   description: Biográfia do usuário.
+                   example: Dev Jr!
+       responses:
+         201:
+           description: A User.
+           content:
+             application/json:
+               schema:
+                 type: object
+                 properties:
+                   id:
+                     type: integer
+                     description: The user ID.
+                     example: 0
+                   name:
+                     type: string
+                     description: The user's name.
+                     example: Guilherme
+                   lastname:
+                     type: string
+                     description: Sobrenome do usuário.
+                     example: Maciel
+                   nickname:
+                     type: string
+                     description: Apelido do usuário.
+                     example: forestus
+                   address:
+                     type: string
+                     description: Endereço do usuário.
+                     example: Apiaca
+                   bio:
+                     type: string
+                     description: Biográfia do usuário.
+                     example: Dev Jr!
+                   created_at:
+                     type: string
+                     description: Data de cadastro.
+                     example: 021-06-26T00:09:54.867
+                   updated_a:
+                     type: string
+                     description: Data de atualização do cadastro.
+                     example: 2021-06-26T00:09:54.867Z
+         400:
+           description: Validation Error.
+           content:
+             application/json:
+               schema:
+                 type: object
+                 properties:
+                   message:
+                     type: array
+                     items:
+                        type: string
+                     example: ["Require String/Max character","Another unknown error"]
+         409:
+           description: Conflict Error.
+           content:
+             application/json:
+               schema:
+                 type: object
+                 properties:
+                   message:
+                     type: array
+                     items:
+                        type: string
+                     example: ["User Already Exists!"]

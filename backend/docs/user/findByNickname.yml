@@ -1,0 +1,57 @@
+paths:
+  /users/:{nickname}:
+     get:
+       tags:
+        - User
+       summary: Find User By Nickname.
+       parameters:
+         - in: path
+           name: nickname
+           schema:
+             type: string
+           required: true
+           description: User nickname
+       responses:
+         200:
+           description: User.
+           content:
+             application/json:
+               schema:
+                 type: object
+                 properties:
+                   name:
+                     type: string
+                     description: The user's name.
+                     example: Guilherme
+                   lastname:
+                     type: string
+                     description: Sobrenome do usuário.
+                     example: Maciel
+                   nickname:
+                     type: string
+                     description: Apelido do usuário.
+                     example: forestus
+         400:
+           description: Validation Error.
+           content:
+             application/json:
+               schema:
+                 type: object
+                 properties:
+                   message:
+                     type: array
+                     items:
+                        type: string
+                     example: ["Require String/Max character"]
+         404:
+           description: Not Found Error.
+           content:
+             application/json:
+               schema:
+                 type: object
+                 properties:
+                   message:
+                     type: array
+                     items:
+                        type: string
+                     example: ["User Not Found!"]

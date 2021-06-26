@@ -1,0 +1,104 @@
+paths:
+  /users/:{id}:
+     put:
+       tags:
+        - User
+       summary: Update a user Lastname and Address.
+       parameters:
+         - in: path
+           name: id
+           schema:
+             type: number
+           required: true
+           description: User id
+       requestBody:
+         required: true
+         content:
+           application/json:
+             schema:
+               type: object
+               properties:
+                 lastname:
+                   type: string
+                   description: Sobrenome do usuário.
+                   example: Maciel
+                 address:
+                   type: string
+                   description: Endereço do usuário.
+                   example: Apiaca
+       responses:
+         200:
+           description: Updated User.
+           content:
+             application/json:
+               schema:
+                 type: object
+                 properties:
+                   id:
+                     type: integer
+                     description: The user ID.
+                     example: 0
+                   name:
+                     type: string
+                     description: The user's name.
+                     example: Guilherme
+                   lastname:
+                     type: string
+                     description: Sobrenome do usuário.
+                     example: Maciel
+                   nickname:
+                     type: string
+                     description: Apelido do usuário.
+                     example: forestus
+                   address:
+                     type: string
+                     description: Endereço do usuário.
+                     example: Apiaca
+                   bio:
+                     type: string
+                     description: Biográfia do usuário.
+                     example: Dev Jr!
+                   created_at:
+                     type: string
+                     description: Data de cadastro.
+                     example: 021-06-26T00:09:54.867
+                   updated_a:
+                     type: string
+                     description: Data de atualização do cadastro.
+                     example: 2021-06-26T00:09:54.867Z
+         400:
+           description: Validation Error.
+           content:
+             application/json:
+               schema:
+                 type: object
+                 properties:
+                   message:
+                     type: array
+                     items:
+                        type: string
+                     example: ["Require String","Another unknown error"]
+         404:
+           description: Not Found Error.
+           content:
+             application/json:
+               schema:
+                 type: object
+                 properties:
+                   message:
+                     type: array
+                     items:
+                        type: string
+                     example: ["User Not Found!"]
+         409:
+           description: Conflict Error.
+           content:
+             application/json:
+               schema:
+                 type: object
+                 properties:
+                   message:
+                     type: array
+                     items:
+                        type: string
+                     example: ["User Params Already Exists!"]

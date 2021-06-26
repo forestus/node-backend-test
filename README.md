@@ -1,62 +1,66 @@
-### Teste para vaga backend com Node.Js
+## Requisitos
 
-#### Contexto
+ - Docker 20.10.7, build f0df350 https://www.docker.com/get-started
 
-- Construir uma API REST capaz de realizar o `C.R.U.D.` seguindo os padrões atuais, manipulando os valores de entrada, processando e retornando os dados, mensagens e status coerentes.
+ - Docker compose 1.29.2, build 5becea4c
 
----
+ - Node JS v15.3.0 - https://nodejs.org/en/download/
 
-#### Especificações da aplicação
-
-- Utilize `JavaScript` ou `TypeScript`.
-- Utilize as **ferramentas de sua preferência** para manipulação de requisições _http_, _banco de dados_ e outros.
-- A aplicação deve ser construída utilizando o `design pattern` padrão do **MVC**.
+ - PostgreSQL 13.3 (usada no docker-compose)
 
 ---
 
-##### RNF
+## Postgres
+ - ### caso queira trocar os dados de acesso ao Postres é só trocar no arquivo ".env" dentro da pasta postgres antes de inicializar o banco e consequentemente trocar a configuração da api no "ormconfig.json".
+ - ### abra a pasta postgres e dê docker-compose up -d.
 
-##### **Obrigatório**
+</br>
+</br>
 
-- A API deve seguir os princípios do desgin pattern `RESTful.`
-- Manipulação de dados no padrão `JSON`.
-- Os dados referentes à(s) entidade(s) devem ser persistidos em BD.
-- Isole as operações feitas diretamente no banco de dados em repositórios.
-- Retorno das requisições e status com semântica nas operações realizadas.
-- Tratamento de erros e exceções.
+## Api
 
-##### **Bônus**
+abra a pasta backend e digite os comandos seguindo os passos abaixo.
 
-- Documentação da API, suas rotas e parâmetros.
-- Documentação dos requisitos necessários para rodar a aplicação.
+</br>
 
-##### **Diferencial**
+### Ambiente de desenvolvimento:
 
-- Criação de suíte de testes unitários.
-- Containerização da aplicação com Docker.
-- Live demo da aplicação.
+</br>
 
----
+ - "npm i" para instalar os pacotes necessários
 
-##### RF
+ - "npm run schema-sync" ou "npm run migration:run" para criar o modelo de dados user no postgres.
 
-- A entidade de Usuário deve possuir as seguintes informações:
-  - id: string, (primário)(gerado automaticamente),
-  - name: string,
-  - lastname: string,
-  - nickname: string, (único) - máx. 30 caracteres
-  - address: string, // O endereço todo dentro da string
-  - bio: string, (opcional) - máx. 100 caracteres // breve descrição sobre o usuário
-  - createdAt: Date,
-  - updatedAt: Date
+ - "npm run dev" para rodar a api em modo de desenvolvimento.
+ 
+</br>
 
-- Métodos:
-  - [] Cria um novo usuário recebendo os dados pelo corpo da requisição: retorna os dados do usuário criado com status correspondente.
-    - Se nickname já existe, retornar status e mensagem de erro.
-  - [] Listar todos os usuários cadastrados filtrados pelos campos `nome` e/ou `sobrenome`, filtrados por parâmetros de consulta: retorna um array de usuários.
-  - [] Listar um usuário pelo nickname passado como parâmetro: retorna um único usuário com nome, sobrenome e nickname.
-  - [] Alterar o sobrenome e o endereço do usuário recebido no corpo da requisição, baseado no id recebido como parâmetro de rota: retorna o usuário alterado com as novas informações.
-  - [] Alterar o nickname de um usuário recebido no corpo da requisição, baseado no id recebido como parâmetro de rota: retorna o usuário alterado com as novas informações.
-    - Se o nickname passado já existir, deve retornar status e mensagem de erro.
-  - [] Deletar um usuário baseado no id recebido como parâmetro de rota: retorna o status de sucesso.
 
+comandos para manipulação de migrations estão no package.json em "scripts", digite "npm run nome_do_script", para rodar.
+
+</br>
+
+### Build:
+
+</br>
+
+ - npm run build na pasta backend
+
+ - copie os arquivos "package.json", "ormconfig.json", "pm2config.json" e a pasta "docs" para a pasta dist.
+
+ - abra a pasta dist no terminal com "cd dist" e dê um "npm start".
+ 
+</br>
+
+
+comandos para manipulação do PM2 estão no package.json em "scripts", digite "npm stop" ou "npm restart", para rodar.
+
+</br>
+
+ ### Documentação e Consumo
+
+</br>
+
+ - para acessar a Documentação feita com Swagger acesse a rota http://localhost:3000/api-docs
+
+ - para consumir da aplicação utilize Insomnia (https://insomnia.rest/download) ou Postman(https://www.postman.com/downloads/).
