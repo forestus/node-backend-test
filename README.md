@@ -36,7 +36,7 @@ abra a pasta backend e digite os comandos seguindo os passos abaixo.
 </br>
 
 
-comandos para manipulação de migrations estão no package.json em "scripts", digite "npm run nome_do_script", para rodar.
+comandos para manipulação de migrations e eslint estão no package.json em "scripts", digite "npm run nome_do_script", para rodar.
 
 </br>
 
