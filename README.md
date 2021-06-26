@@ -11,8 +11,9 @@
 ---
 
 ## Postgres
- - ### caso queira trocar os dados de acesso ao Postres é só trocar no arquivo ".env" dentro da pasta postgres antes de inicializar o banco e consequentemente trocar a configuração da api no "ormconfig.json".
- - ### abra a pasta postgres e dê docker-compose up -d.
+ - caso queira trocar os dados de acesso ao Postres é só trocar no arquivo ".env" dentro da pasta postgres antes de inicializar o banco e consequentemente trocar a configuração da api no "ormconfig.json".
+ 
+ - abra a pasta postgres e dê docker-compose up -d.
 
 </br>
 </br>
